@@ -1,18 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import type { LinkItem } from "@/data/profile";
 
 type Props = {
   link: LinkItem;
-  initialCount: number;
+  count: number;
+  onClick: () => void;
 };
 
-export default function LinkCard({ link, initialCount }: Props) {
-  const [count, setCount] = useState(initialCount);
-
+export default function LinkCard({ link, count, onClick }: Props) {
   function handleClick() {
-    setCount((prev) => prev + 1);
+    onClick();
     // 페이지를 떠나도 요청이 전송되도록 sendBeacon을 우선 사용합니다.
     const body = JSON.stringify({ id: link.id });
     const sent =
@@ -45,7 +43,7 @@ export default function LinkCard({ link, initialCount }: Props) {
         </span>
       )}
       <span className="flex-1 font-semibold text-stone-800 dark:text-stone-100">{link.title}</span>
-      <span className="pr-1 text-xs tabular-nums text-stone-400 dark:text-stone-400">클릭 {count.toLocaleString()}</span>
+      <span className="pr-1 text-xs tabular-nums text-stone-400 dark:text-stone-400">{count.toLocaleString()}회</span>
     </a>
   );
 }
