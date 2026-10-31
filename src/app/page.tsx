@@ -11,8 +11,15 @@ export default async function Home() {
   const counts = await getClickCounts();
 
   return (
-    <main className="relative mx-auto min-h-screen w-full max-w-md px-4 pb-12 pt-16">
-      <div className="absolute right-4 top-4">
+    <main className="relative isolate mx-auto min-h-screen w-full max-w-md px-6 pb-20 pt-20 sm:pt-24">
+      {/* 장식용 배경 빛: 글래스 카드 뒤로 은은한 색이 비치도록 합니다. */}
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-orange-200/60 blur-3xl dark:bg-orange-900/25" />
+        <div className="absolute -right-20 top-1/3 h-72 w-72 rounded-full bg-rose-200/50 blur-3xl dark:bg-rose-900/20" />
+        <div className="absolute -bottom-24 left-1/4 h-80 w-80 rounded-full bg-amber-100/70 blur-3xl dark:bg-amber-900/20" />
+      </div>
+
+      <div className="absolute right-5 top-5">
         <ThemeToggle />
       </div>
 
@@ -20,7 +27,7 @@ export default async function Home() {
       <ProfileHeader profile={profile} />
 
       {/* 하단: 링크 카드 목록 (세로 배치) */}
-      <ul className="mt-10 flex flex-col gap-7">
+      <ul className="mt-12 flex flex-col gap-4 sm:gap-5">
         {links.map((link) => (
           <li key={link.id}>
             <LinkCard link={link} initialCount={counts[link.id] ?? 0} />

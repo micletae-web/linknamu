@@ -34,10 +34,18 @@ export default function LinkCard({ link, initialCount }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="flex w-full items-center justify-between rounded-2xl border border-neutral-200 bg-white px-5 py-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 dark:border-neutral-700 dark:bg-neutral-800"
+      className="group flex w-full items-center gap-4 rounded-3xl border border-white/70 bg-white/45 px-4 py-3.5 shadow-[0_8px_30px_-12px_rgba(150,90,50,0.25)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-px hover:bg-white/65 hover:shadow-[0_12px_34px_-12px_rgba(150,90,50,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.08] dark:bg-stone-900/40 dark:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)] dark:hover:bg-stone-800/50"
     >
-      <span className="font-medium">{link.title}</span>
-      <span className="text-xs text-neutral-500 dark:text-neutral-400">클릭 {count.toLocaleString()}</span>
+      {link.emoji && (
+        <span
+          aria-hidden="true"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/80 text-xl shadow-sm dark:bg-white/10"
+        >
+          {link.emoji}
+        </span>
+      )}
+      <span className="flex-1 font-semibold text-stone-800 dark:text-stone-100">{link.title}</span>
+      <span className="pr-1 text-xs tabular-nums text-stone-400 dark:text-stone-400">클릭 {count.toLocaleString()}</span>
     </a>
   );
 }
